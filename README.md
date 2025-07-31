@@ -13,7 +13,8 @@ An application to generate and explore different types of fractals with CPP, SSE
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-     - [Examples](#recording-examples)
+     - [Recording Examples](#recording-examples)
+- [How It Works](#how-it-works)
 - [License](#license)
 - [Contact](#contact)
 
@@ -103,6 +104,31 @@ After running `FractalGenerator.exe`, you'll see the application interface.
 ![Alt Text](renders/render3.gif)
 ![Alt Text](renders/render4.gif)
 ![Alt Text](renders/render5.gif)
+
+## **How It Works**
+
+### Languages
+    - You have an option to generate any fractal with a range of languages.
+	- CPP, SSE, AVX, and multithreading option with each language. 
+    - SSE and AVX are single instruction multiple data languages (SIMD).
+	- This means that they have larger registers and can process more data at the same time in parallel.
+	- CPP uses the generic 64-bit registers, SSE uses 128-bit registers, and AVX uses 256-bit registers.
+	- Since the size of registers for each language doubles, in theory, generation time should half.
+    - Multithreading then uses the cores available in your CPU to further optimize generation time.
+
+### Fractals
+    - Each fractal is a mathematical equation that deals with the real and complex plane.
+    - If you simulate the amount of iterations for a given point in the function, then map each iteration to a colour, you get a uniform result to a very random function.
+
+#### Types of Fractals
+    - [Mandelbrot](https://paulbourke.net/fractals/mandelbrot/)
+    - [Burning Ship](https://paulbourke.net/fractals/burnship/)
+    - [Multibrot (Order 5)](https://paulbourke.net/fractals/multimandel/)
+    - [Nova](https://paulbourke.net/fractals/nova/)
+    - [Pheonix](https://en.wikipedia.org/wiki/Julia_set)
+
+### Gradient
+    - All of the gradients are just random ways of messing with the rgb values based on the iterations.
 
 ## **License**
 

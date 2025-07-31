@@ -239,8 +239,8 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         case ID_RENDER_RECORD:
         {
-            wchar_t folderPath[MAX_PATH];
-            wchar_t text[512];
+            LPWSTR folderPath = nullptr;
+            LPWSTR text = nullptr;
 
             HWND hRecButton = GetDlgItem(hWnd, ID_RENDER_RECORD);
 
@@ -280,10 +280,11 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 SendMessage(hRecButton, WM_SETTEXT, 0, (LPARAM)L"Stop Recording");
 
-                std::string filePath = std::format("{}\\output.gif", folderPath);
-
+                std::filesystem::path filePath{ folderPath };
+                filePath /= "output.gif";
+                                
                 // Start adding to the gif
-                GifBegin(&m_gif, filePath.c_str(), m_widthW, m_heightW, m_gifDelay);
+                GifBegin(&m_gif, filePath.string().c_str(), m_widthW, m_heightW, m_gifDelay);
                 m_bRecording = true;
             }
             else
