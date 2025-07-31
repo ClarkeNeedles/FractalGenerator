@@ -95,6 +95,11 @@ After running `FractalGenerator.exe`, you'll see the application interface.
    - As long as you do not hit end recording, each time an image is generated whether by clicking "Generate", or using your mouse, it will be added to the output gif.
 
 ### Recording Examples
+![Alt Text](renders/render1.gif)
+![Alt Text](renders/render2.gif)
+![Alt Text](renders/render3.gif)
+![Alt Text](renders/render4.gif)
+![Alt Text](renders/render5.gif)
 
 ## **Contributing**
 
