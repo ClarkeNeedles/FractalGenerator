@@ -29,7 +29,6 @@ int App::Run(HINSTANCE hInstance, int nCmdShow)
 {
     // Define the window class
     WNDCLASSEX wcex;
-
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = StaticWndProc;
@@ -128,7 +127,7 @@ LRESULT CALLBACK App::StaticWndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 
     if (message == WM_NCCREATE)
     {
-        // Extract the App pointer passed via CreateWindowEx (lParam contains `CREATESTRUCT*`)
+        // Extract the App pointer passed via CreateWindowEx
         CREATESTRUCT* pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
         pThis = reinterpret_cast<App*>(pCreate->lpCreateParams);
 
@@ -240,17 +239,19 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         case ID_RENDER_RECORD:
         {
-            wchar_t folderPath[MAX_PATH] = { 0 };
-            wchar_t text[256]; // Text buffer for getting the button text
+            wchar_t folderPath[MAX_PATH];
+            wchar_t text[512];
+
             HWND hRecButton = GetDlgItem(hWnd, ID_RENDER_RECORD);
+
             GetWindowText(hRecButton, text, sizeof(text));
 
             if (!wcscmp(text, L"Start Recording"))
             {
                 // Initialize BROWSEINFO structure
                 BROWSEINFO bi = { 0 };
-                bi.lpszTitle = L"Select a Folder"; // Title of the folder selection dialog
-                bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE; // Return only folders, use modern dialog
+                bi.lpszTitle = L"Select a Folder";
+                bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE;
 
                 // Display the dialog box
                 LPITEMIDLIST pidl = SHBrowseForFolder(&bi);
@@ -279,15 +280,10 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 SendMessage(hRecButton, WM_SETTEXT, 0, (LPARAM)L"Stop Recording");
 
-                // This is converting the file path wchar_t to a char for GifBegin()
-                wcscat_s(folderPath, L"\\output.gif"); // Add destination file to folder path
-                size_t charLen = 0;
-                wcstombs_s(&charLen, NULL, 0, folderPath, _TRUNCATE); // Get length for buffer
-                char* fullPath = new char[charLen + 1];
-                wcstombs_s(NULL, fullPath, charLen + 1, folderPath, _TRUNCATE); // Convet wchar_t to char
+                std::string filePath = std::format("{}\\output.gif", folderPath);
 
                 // Start adding to the gif
-                GifBegin(&m_gif, fullPath, m_widthW, m_heightW, m_gifDelay);
+                GifBegin(&m_gif, filePath.c_str(), m_widthW, m_heightW, m_gifDelay);
                 m_bRecording = true;
             }
             else
@@ -309,6 +305,7 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             HMENU hMenu = GetMenu(hWnd);
 
+            // Change checked item
             CheckMenuItem(hMenu, m_menuOptionsOn.m_language, MF_UNCHECKED);
             CheckMenuItem(hMenu, param, MF_CHECKED);
 
@@ -324,6 +321,7 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             HMENU hMenu = GetMenu(hWnd);
 
+            // Change checked item
             CheckMenuItem(hMenu, m_menuOptionsOn.m_fractal, MF_UNCHECKED);
             CheckMenuItem(hMenu, param, MF_CHECKED);
 
@@ -341,6 +339,7 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             HMENU hMenu = GetMenu(hWnd);
 
+            // Change checked item
             CheckMenuItem(hMenu, m_menuOptionsOn.m_gradient, MF_UNCHECKED);
             CheckMenuItem(hMenu, param, MF_CHECKED);
 
@@ -356,8 +355,9 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
         if (m_bCanZoom)
         {
-            GetCursorPos(&m_clickPoint);       // Retrieve screen coordinates
-            ScreenToClient(hWnd, &m_clickPoint); // Convert to client coordinates
+            // Get screen coordinates
+            GetCursorPos(&m_clickPoint);
+            ScreenToClient(hWnd, &m_clickPoint);
 
             m_fractal->MoveScreen(&m_clickPoint);
 
@@ -368,7 +368,6 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // Force a repaint to transfer the bitmap buffer to the window
             m_bRender = true;
             InvalidateRect(hWnd, NULL, TRUE);
-
         }
 
         break;
@@ -380,7 +379,8 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             int wheelDelta = GET_WHEEL_DELTA_WPARAM(wParam);
 
             // Scrolling up/down (zoomin in/out)
-            m_fractal->ZoomScreen(wheelDelta > 0 ? Fractal::ZoomType::ZOOM_IN : Fractal::ZoomType::ZOOM_OUT);
+            m_fractal->ZoomScreen(wheelDelta > 0 ? 
+                Fractal::ZoomType::ZOOM_IN : Fractal::ZoomType::ZOOM_OUT);
 
             // Rendering the mandelbrot to the pixel buffer
             m_fractal->Render(m_pixelBuffer);
@@ -408,7 +408,11 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 // Entry
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
+int WINAPI WinMain(
+    _In_ HINSTANCE hInstance, 
+    _In_opt_ HINSTANCE, 
+    _In_ LPSTR lpStr, 
+    _In_ int nCmdShow)
 {
     auto app = std::make_shared<App>();
 

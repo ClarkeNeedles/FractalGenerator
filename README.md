@@ -103,7 +103,10 @@ After running `FractalGenerator.exe`, you'll see the application interface.
 
 ## **License**
 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ## **Contact**
+
 - **Author**: [Clarke Needles](https://your-portfolio-link.com)  
 - 📧 Email: [c.w.needles@gmail.com](mailto:c.w.needles@gmail.com)  
 - 🌐 Website: [yourwebsite.com](https://yourwebsite.com) 
