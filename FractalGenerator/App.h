@@ -36,8 +36,8 @@ public:
 
 private:
     // Window variables
-    HWND m_hWnd;
-    HINSTANCE m_hInst;
+    HWND m_hWnd{};
+    HINSTANCE m_hInst{};
     LPCWSTR m_pszWindowClass = _T("FractalApp");
     LPCWSTR m_pszTitle = _T("Fractal Playground App");
 
@@ -62,8 +62,7 @@ private:
     bool m_bRecording{};
 
     // WndProc variables
-    PAINTSTRUCT m_ps;
-    HDC m_hdc;
+    PAINTSTRUCT m_ps{};
     POINT m_clickPoint{};
     Colour* m_pixelBuffer = (Colour*)_aligned_malloc(sizeof(Colour) * m_widthW * m_heightW, 32);
     GifWriter m_gif = { NULL, NULL, NULL };

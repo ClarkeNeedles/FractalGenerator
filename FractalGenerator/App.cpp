@@ -11,7 +11,7 @@
 
 #include "App.h"
 
-App::App() : m_hWnd(nullptr)
+App::App()
 {
     // Initialize performance frequency
     if (!QueryPerformanceFrequency(&m_liFrequency))
