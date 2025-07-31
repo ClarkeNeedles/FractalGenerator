@@ -76,8 +76,31 @@ If you'd like to modify the application or explore the source code:
   
 ## **Usage**
 
+Here's how to use the Fractal Generator application:
+
+### Step 1: Launch the Application
+After running `FractalGenerator.exe`, you'll see the application interface.
+
+### Step 2: Generate Your Fractals
+   - Customize fractal parameters (e.g., language, fractal, gradient) and hit "Render" -> "Generate" to render your fractal.
+   - The number at the bottom left is the time it took to generate the given fractal.
+   - As you move down the list of languages, the generation time will become shorter and shorter.
+
+### Step 3: Explore Your Fractal
+   - Left mouse button: move the fractal around
+   - Scroll in/out: zooming in and out of the generated fractal
+
+### Recording
+   - If you hit "Render" -> "Start Recording" you will start recording.
+   - As long as you do not hit end recording, each time an image is generated whether by clicking "Generate", or using your mouse, it will be added to the output gif.
+
+### Recording Examples
+
 ## **Contributing**
 
 ## **License**
 
 ## **Contact**
+- **Author**: [Clarke Needles](https://your-portfolio-link.com)  
+- 📧 Email: [c.w.needles@gmail.com](mailto:c.w.needles@gmail.com)  
+- 🌐 Website: [yourwebsite.com](https://yourwebsite.com) 
