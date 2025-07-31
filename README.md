@@ -1,3 +1,6 @@
+![MIT License](https://img.shields.io/badge/License-MIT-brightgreen)
+![C++](https://img.shields.io/badge/Language-C++-blue)
+
 # **Fractal Generator**
 
 An application to generate and explore different types of fractals with CPP, SSE, AVX, and multithreading.
