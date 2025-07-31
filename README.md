@@ -11,7 +11,6 @@ An application to generate and explore different types of fractals with CPP, SSE
 - [Installation](#installation)
 - [Usage](#usage)
      - [Examples](#recording-examples)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
@@ -101,8 +100,6 @@ After running `FractalGenerator.exe`, you'll see the application interface.
 ![Alt Text](renders/render3.gif)
 ![Alt Text](renders/render4.gif)
 ![Alt Text](renders/render5.gif)
-
-## **Contributing**
 
 ## **License**
 
