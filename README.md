@@ -10,6 +10,7 @@ An application to generate and explore different types of fractals with CPP, SSE
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+     - [Examples](#recording_examples)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
