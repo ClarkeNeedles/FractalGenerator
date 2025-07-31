@@ -1,0 +1,13 @@
+# Ignore user-specific and temporary files
+*.VC.db
+*.sdf
+*.opensdf
+*.user
+*.log
+
+# Ignore .vcxproj files
+*.vcxproj
+*.vcxproj.filters
+
+# Ignore hidden VS folder
+.vs/
