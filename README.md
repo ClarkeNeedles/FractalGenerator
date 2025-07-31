@@ -39,7 +39,7 @@ An application to generate and explore different types of fractals with CPP, SSE
 If you simply want to use the application without diving into the source code:
 
 1. **Download the Executable**
-   - Go to the [Releases](https://github.com/ClarkeNeedles/FractalGenerator/x64/Release) section of this repository.
+   - Go to the [Releases](https://github.com/ClarkeNeedles/FractalGenerator/tree/main/x64/Release) section of this repository.
    - Download the latest version of `FractalGenerator.exe`.
 
 2. **Run the Application**
