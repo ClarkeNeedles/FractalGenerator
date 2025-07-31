@@ -107,28 +107,68 @@ After running `FractalGenerator.exe`, you'll see the application interface.
 
 ## **How It Works**
 
-### Languages
-    - You have an option to generate any fractal with a range of languages.
-	- CPP, SSE, AVX, and multithreading option with each language. 
-    - SSE and AVX are single instruction multiple data languages (SIMD).
-	- This means that they have larger registers and can process more data at the same time in parallel.
-	- CPP uses the generic 64-bit registers, SSE uses 128-bit registers, and AVX uses 256-bit registers.
-	- Since the size of registers for each language doubles, in theory, generation time should half.
-    - Multithreading then uses the cores available in your CPU to further optimize generation time.
+The **Fractal Generator** allows users to generate various fractals using different computational techniques and languages, harnessing advanced processor capabilities and mathematical equations.
 
-### Fractals
-    - Each fractal is a mathematical equation that deals with the real and complex plane.
-    - If you simulate the amount of iterations for a given point in the function, then map each iteration to a colour, you get a uniform result to a very random function.
+---
 
-#### Types of Fractals
-    - [Mandelbrot](https://paulbourke.net/fractals/mandelbrot/)
-    - [Burning Ship](https://paulbourke.net/fractals/burnship/)
-    - [Multibrot (Order 5)](https://paulbourke.net/fractals/multimandel/)
-    - [Nova](https://paulbourke.net/fractals/nova/)
-    - [Pheonix](https://en.wikipedia.org/wiki/Julia_set)
+### **Languages and Performance Optimization**
 
-### Gradient
-    - All of the gradients are just random ways of messing with the rgb values based on the iterations.
+- You can generate fractals using several computational methods:
+  - **CPP** (C++): Uses generic 64-bit registers.
+  - **SSE**: Utilizes single instruction multiple data (SIMD) with 128-bit registers.
+  - **AVX**: Leverages SIMD with 256-bit registers for higher parallelism.
+  - **Multithreading**: Exploits all the cores in your CPU to further optimize performance.
+
+- **How SIMD Works**:
+  - SSE and AVX are SIMD (single instruction, multiple data) technologies that process multiple data points in parallel.
+  - Larger registers mean more data can be processed simultaneously:
+    - CPP → 64-bit registers.
+    - SSE → 128-bit registers.
+    - AVX → 256-bit registers.
+
+- **Performance Expectation**:
+  - As the size of registers doubles, **generation time is expected to halve** (theoretical maximum).
+  - Multithreading combines with SIMD to distribute workload across multiple CPU cores, reducing render times significantly.
+
+---
+
+### **Fractals**
+
+Fractals are intricate geometric shapes generated from mathematical equations, often involving the real and complex number planes. By simulating the number of **iterations** for a given point within the function and **mapping iterations to colors**, the fractals take on visually stunning, uniform patterns.
+
+#### **Types of Fractals**
+
+Here are the types of fractals currently supported by the application:
+
+1. **[Mandelbrot](https://paulbourke.net/fractals/mandelbrot/)**  
+   - The classic fractal, defined by the formula \(z_{n+1} = z_n^2 + c\).  
+
+2. **[Burning Ship](https://paulbourke.net/fractals/burnship/)**  
+   - A flame-like fractal defined by taking the absolute values of the real and imaginary parts before squaring.  
+
+3. **[Multibrot (Order 5)](https://paulbourke.net/fractals/multimandel/)**  
+   - A generalization of the Mandelbrot set using higher powers \((z^5 + c)\).  
+
+4. **[Nova](https://paulbourke.net/fractals/nova/)**  
+   - Related to Newton's method for root-finding, resulting in stunning star-shaped geometries.  
+
+5. **[Phoenix](https://en.wikipedia.org/wiki/Julia_set)**  
+   - A more chaotic fractal generated using a feedback loop from previous iterations.
+
+---
+
+### **Gradient Mapping**
+
+Gradients in the fractal generator are used to produce dazzling color transitions based on the number of iterations. These gradients manipulate the RGB values dynamically, creating artistic variations in the fractal designs.
+
+---
+
+### **Visual Overview**
+
+Here's a quick breakdown of how everything works together:
+1. **Languages**: Choose a computational method (CPP, SSE, AVX, or Multithreading) to optimize performance.
+2. **Fractal Equations**: Generate fractals like Mandelbrot, Nova, or Phoenix by mapping iterations to points in the complex plane.
+3. **Gradient Mapping**: Add depth and vibrancy by tweaking RGB values, resulting in unique and stunning visuals.
 
 ## **License**
 
