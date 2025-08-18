@@ -178,5 +178,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - **Author**: [Clarke Needles]  
 - 📧 Email: [c.w.needles@gmail.com](mailto:c.w.needles@gmail.com)  
-- 🌐 Website: [clarkeneedles.com](https://clarkeneedles.github.io/portfolio) 
+- 🌐 Website: [clarkeneedles.com](https://clarkeneedles.com) 
+
 
