@@ -5,9 +5,5 @@
 *.user
 *.log
 
-# Ignore .vcxproj files
-*.vcxproj
-*.vcxproj.filters
-
 # Ignore hidden VS folder
 .vs/
