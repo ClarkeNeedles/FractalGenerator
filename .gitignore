@@ -1,9 +1,6 @@
-# Ignore user-specific and temporary files
 *.VC.db
 *.sdf
 *.opensdf
 *.user
 *.log
-
-# Ignore hidden VS folder
 .vs/
