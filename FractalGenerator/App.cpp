@@ -239,14 +239,11 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         case ID_RENDER_RECORD:
         {
-            LPWSTR folderPath = nullptr;
-            LPWSTR text = nullptr;
+            TCHAR folderPath[MAX_PATH];
 
-            HWND hRecButton = GetDlgItem(hWnd, ID_RENDER_RECORD);
+            HMENU hMenu = GetMenu(hWnd);
 
-            GetWindowText(hRecButton, text, sizeof(text));
-
-            if (!wcscmp(text, L"Start Recording"))
+            if (!m_bRecording)
             {
                 // Initialize BROWSEINFO structure
                 BROWSEINFO bi = { 0 };
@@ -278,7 +275,15 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     break;
                 }
 
-                SendMessage(hRecButton, WM_SETTEXT, 0, (LPARAM)L"Stop Recording");
+                // Update the record button
+                ModifyMenu(
+                    hMenu,              
+                    ID_RENDER_RECORD,    
+                    MF_BYCOMMAND | MF_STRING,
+                    ID_RENDER_RECORD,
+                    L"Stop Recording"
+                );
+                DrawMenuBar(hWnd);
 
                 std::filesystem::path filePath{ folderPath };
                 filePath /= "output.gif";
@@ -289,7 +294,14 @@ LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             else
             {
-                SendMessage(hRecButton, WM_SETTEXT, 0, (LPARAM)L"Start Recording");
+                ModifyMenu(
+                    hMenu,
+                    ID_RENDER_RECORD,
+                    MF_BYCOMMAND | MF_STRING,
+                    ID_RENDER_RECORD,
+                    L"Start Recording"
+                );
+                DrawMenuBar(hWnd);
 
                 GifEnd(&m_gif);
                 m_bRecording = false;
