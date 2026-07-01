@@ -1,5 +1,6 @@
 ![MIT License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![C++](https://img.shields.io/badge/Language-C++-blue)
+![https://shields.io/ClarkeNeedles/Autonomous-PiCar](https://img.shields.io/github/repo-size/ClarkeNeedles/FractalGenerator)
 
 # **Fractal Generator**
 
